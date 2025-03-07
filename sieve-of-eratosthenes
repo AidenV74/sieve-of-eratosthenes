@@ -1,0 +1,27 @@
+def sieve_of_eratosthenes(n):
+    
+    #Sets a boolean array with all values initially set to true. 
+    #A true value represents a number that is prime, and vice versa.
+    sieve = [True for i in range(n + 1)]
+
+    primes = []
+    p = 2
+
+    #Only needs to run for values less than the square root of n. 
+    #Above that value, values will be checked that have already been accounted for.
+    while (p * p <= n):
+
+        #If the value is true, it is prime. 
+        #It sets all multiples of the prime to false, because they are not prime.
+        if sieve[p] == True:
+            for i in range(p * p, n + 1, p):
+                sieve[i] = False
+        p += 1
+
+    #Runs through the sieve and if the value is true, it adds the index to the primes list.
+    for p in range(2, n + 1):
+        if sieve[p]:
+            primes.append(p)
+    print(primes)
+
+sieve_of_eratosthenes(1000)
